@@ -1,0 +1,90 @@
+<app-banner
+  src="imagens/banner/b_glass@2x.svg"
+  alt="Banner de Exame"
+  >
+</app-banner>
+<app-container>
+    <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">
+        <i class="fa-solid fa-clipboard"></i>
+          Lista de pacientes
+        </span>
+    </div>
+  </nav>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th> ID </th>
+                    <th> Nome </th>
+                    <th> Idade </th>
+                    <th> Sexo</th>
+                    <th> Data de cadastro</th>
+        
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr *ngFor = "let paciente of pacientes">
+                    <td>{{ paciente.id }}</td>
+                    <td>{{ paciente.nome }}</td>
+                    <td>{{ paciente.idade }}</td>
+                    <td>{{ paciente.sexo }}</td>
+                    <td>{{ paciente.data }}</td>
+
+                    
+                    <td>
+                      <button  class="btn btn-secondary" 
+                        routerLink="/exameCompleto/{{paciente.id}}">
+                        <i class="fa-regular fa-folder-open"></i>
+                      </button>
+                   </td>
+                    
+                    <td> 
+                        <button class="btn btn-primary"
+                        routerLink="/edit/{{ paciente.id }}" 
+                        (click)="onEdit(paciente)"
+                       >
+                        <i class="fa-solid fa-pencil"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" 
+                          (click)="exameSelecionaDelecao(paciente)" 
+                          data-bs-toggle="modal" data-bs-target="#modalDelecao">
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>    
+                </tr>        
+            </tbody>
+        </table>
+    </div>
+    <div id="modalDelecao" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h6 class="modal-title"> Deseja realmente deletar o exame do(a) paciente?</h6>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+            </div>
+            <div class="modal-body" *ngIf ="exameSelecionado">
+             <p>{{ exameSelecionado.nome }} de {{ exameSelecionado.idade }} anos </p>
+            </div> 
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" (click)="deletarExame()"
+                 data-bs-dismiss="modal" >Confirma</button>
+              <button type="button" class="btn btn-secondary" 
+              data-bs-dismiss="modal">Cancelar</button>
+            </div >
+            
+          </div>
+        </div>
+      </div>
+</div>
+</app-container>
+
+
+
+

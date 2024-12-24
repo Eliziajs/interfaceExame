@@ -1,0 +1,368 @@
+<app-container>
+  <form [formGroup]="formCpf">
+    <mat-card>
+    <div class="grid-container">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Pesquisar paciente por CPF*</mat-label>
+        <input matInput type="text" formControlName="cpf"placeholder="CPF">
+        <button (click)="getInputCPF()">pesquisar</button>
+      </mat-form-field>
+    </div>
+    
+    <mat-divider></mat-divider>
+  </mat-card>
+</form>
+  <mat-card>
+    <form [formGroup]="formPaciente">
+      <mat-card-title>
+        <i class="fa-solid fa-microscope"></i>
+        {{ titulo }}
+      </mat-card-title>
+
+      <mat-card-content>
+        <div class="acoesPerfil" *ngIf="!perfilComponent">
+          <h2><i class="fa-solid fa-hospital-user"></i> {{subTitulo_1}}</h2>
+        </div>
+        <div class="radio-group">
+          <label>Sexo de nascimento*</label>
+          <mat-radio-group formControlName="sexo" color="primary">
+            <mat-radio-button value="feminino">Feminino</mat-radio-button>
+            <mat-radio-button value="masculino">Masculino</mat-radio-button>
+
+          </mat-radio-group>
+        </div>
+        <div class="grid-container">
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nome da paciente*</mat-label>
+            <input matInput formControlName="nome" placeholder="Nome">
+          </mat-form-field>
+
+
+          <div class="grid-item">
+            <mat-form-field appearance="outline">
+              <mat-label>Idade*</mat-label>
+              <input matInput formControlName="idade" placeholder="Idade">
+            </mat-form-field>
+
+          </div>
+          <div class="grid-item">
+            <mat-form-field appearance="outline">
+              <mat-label>Peso</mat-label>
+              <input matInput formControlName="peso" placeholder="Peso">
+            </mat-form-field>
+
+
+
+          </div>
+          <div class="grid-item">
+            <mat-form-field appearance="outline">
+              <mat-label>Altura</mat-label>
+              <input matInput formControlName="altura" placeholder="Altura">
+            </mat-form-field>
+          </div>
+          <div class="grid-item">
+
+            <mat-form-field appearance="outline">
+              <mat-label>E-mail</mat-label>
+              <input matInput formControlName="email" placeholder="E-mail">
+            </mat-form-field>
+          </div>
+          <div class="grid-item">
+
+          
+          </div>
+
+          <mat-card-actions class="full-width">
+            <button (click)="executarAcao()" mat-flat-button [disabled]="formExame.invalid"
+              color="primary">
+              {{ textoBotao }}
+              
+              
+            </button>
+          </mat-card-actions>
+        </div>
+      </mat-card-content>
+    </form>
+  </mat-card>
+
+
+
+
+
+  <mat-divider></mat-divider>
+
+
+
+
+  <mat-card>
+    <form [formGroup]="formExame">
+      <section>
+        <div class="acessoPerfil" *ngIf="!perfilComponent">
+          <h2><i class="fa-solid fa-file-waveform"></i> {{subTitulo_2}}</h2>
+        </div>
+      </section>
+     
+        <mat-card-content>
+
+          <div class="grid-container">
+
+            <div class="grid-item">
+              <mat-form-field appearance="outline">
+                <mat-label>AO</mat-label>
+                <input matInput formControlName="ao" placeholder="AO">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>VES</mat-label>
+                <input matInput formControlName="ves" placeholder="ves">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>E</mat-label>
+                <input matInput formControlName="e" placeholder="E">
+              </mat-form-field>
+
+            </div>
+            <div class="grid-item">
+              <mat-form-field appearance="outline">
+                <mat-label>AE</mat-label>
+                <input matInput formControlName="ae" placeholder="AE">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>SIV</mat-label>
+                <input matInput formControlName="siv" placeholder="SIV">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Elinha</mat-label>
+                <input matInput formControlName="eLinha" placeholder="Elinha">
+              </mat-form-field>
+
+
+
+
+            </div>
+            <div class="grid-item">
+              <mat-form-field appearance="outline">
+                <mat-label>VID</mat-label>
+                <input matInput formControlName="vid" placeholder="VID">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>PP</mat-label>
+                <input matInput formControlName="pp" placeholder="PP">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>variavel nova</mat-label>
+                <input matInput placeholder="variavel_nova">
+              </mat-form-field>
+
+
+            </div>
+            <div class="grid-item">
+              <mat-form-field appearance="outline">
+                <mat-label>VED</mat-label>
+                <input matInput formControlName="ved" placeholder="VED">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Fração de Ejeção</mat-label>
+                <input matInput formControlName="fracaoEjecao" placeholder="Fração de Ejeção">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <mat-divider></mat-divider>
+          <div class="acessoPerfil" *ngIf="!perfilComponent">
+            <h2><i class="fa-solid fa-file-waveform"></i> {{subTitulo_3}}</h2>
+          </div>
+
+
+          <div class="grid-container">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Medidas Cavitárias</mat-label>
+              <input type="text" placeholder="Selecione" aria-label="text" matInput formControlName="medidasCavitarias"
+                [matAutocomplete]="mc">
+              <mat-autocomplete #mc="matAutocomplete">
+                @for (option of getMedidasCavitaria; track option) {
+                <mat-option [value]="option">{{option}}</mat-option>
+                }
+
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="grid-container">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Medidas do Ventrículo Esquerdo</mat-label>
+              <input type="text" placeholder="Selecione" aria-label="text" matInput formControlName="medidasVE"
+                [matAutocomplete]="ve">
+              <mat-autocomplete #ve="matAutocomplete">
+                @for (option of getMedidasVE; track option) {
+                <mat-option [value]="option">{{option}}</mat-option>
+                }
+
+              </mat-autocomplete>
+
+            </mat-form-field>
+          </div>
+          <div class="grid-container">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Função Sistólica</mat-label>
+              <input type="text" placeholder="Selecione" aria-label="text" matInput formControlName="funcaoSistolica"
+                [matAutocomplete]="fs">
+              <mat-autocomplete #fs="matAutocomplete">
+                @for (option of getFuncaoSistolica; track option) {
+                <mat-option [value]="option">{{option}}</mat-option>
+                }
+
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="grid-container">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Contratilidade Segmentar</mat-label>
+              <input type="text" placeholder="Selecione" aria-label="text" matInput
+                formControlName="contratilidadeSegmentar" [matAutocomplete]="cs">
+              <mat-autocomplete #cs="matAutocomplete">
+                @for (option of getContratilidadeSegmentar; track option) {
+                <mat-option [value]="option">{{option}}</mat-option>
+                }
+
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="grid-container">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Função Diastólica</mat-label>
+              <input type="text" placeholder="Selecione" aria-label="text" matInput formControlName="funcaoDiastolica"
+                [matAutocomplete]="fd">
+              <mat-autocomplete #fd="matAutocomplete">
+                @for (option of getMedidasVE; track option) {
+                <mat-option [value]="option">{{option}}</mat-option>
+                }
+
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="grid-container">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Cavidades Direita</mat-label>
+              <input type="text" placeholder="Selecione" aria-label="text" matInput formControlName="cavidadesDireita"
+                [matAutocomplete]="cd">
+              <mat-autocomplete #cd="matAutocomplete">
+                @for (option of getCavidadesDireitas; track option) {
+                <mat-option [value]="option">{{option}}</mat-option>
+                }
+
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="grid-container">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Aorta</mat-label>
+              <input type="text" placeholder="Selecione" aria-label="text" matInput formControlName="aorta"
+                [matAutocomplete]="a">
+              <mat-autocomplete #a="matAutocomplete">
+                @for (option of getAorta; track option) {
+                <mat-option [value]="option">{{option}}</mat-option>
+                }
+
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="grid-container">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Válvula Aórtica</mat-label>
+              <input type="text" placeholder="Selecione" aria-label="text" matInput formControlName="valvulaAortica"
+                [matAutocomplete]="va">
+              <mat-autocomplete #va="matAutocomplete">
+                @for (option of getValvulaAortica; track option) {
+                <mat-option [value]="option">{{option}}</mat-option>
+                }
+
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="grid-container">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Válvula Mitral</mat-label>
+              <input type="text" placeholder="Selecione" aria-label="text" matInput formControlName="valvulaMitral"
+                [matAutocomplete]="vt">
+              <mat-autocomplete #vt="matAutocomplete">
+                @for (option of getMitral; track option) {
+                <mat-option [value]="option">{{option}}</mat-option>
+                }
+
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="grid-container">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Tricúspide</mat-label>
+              <input type="text" placeholder="Selecione" aria-label="text" matInput formControlName="tricuspide"
+                [matAutocomplete]="t">
+              <mat-autocomplete #t="matAutocomplete">
+                @for (option of getMedidasVE; track option) {
+                <mat-option [value]="option">{{option}}</mat-option>
+                }
+
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="grid-container">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Válvula Pulmonar</mat-label>
+              <input type="text" placeholder="Selecione" aria-label="text" matInput formControlName="valvulaPulmonar"
+                [matAutocomplete]="vp">
+              <mat-autocomplete #vp="matAutocomplete">
+                @for (option of getValvulaPulmonar; track option) {
+                <mat-option [value]="option">{{option}}</mat-option>
+                }
+
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="grid-container">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Pericárdio</mat-label>
+              <input type="text" placeholder="Selecione" aria-label="text" matInput formControlName="pericardio"
+                [matAutocomplete]="p">
+              <mat-autocomplete #p="matAutocomplete">
+                @for (option of getPericardio; track option) {
+                <mat-option [value]="option">{{option}}</mat-option>
+                }
+
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="grid-container">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Cava</mat-label>
+              <input type="text" placeholder="Selecione" aria-label="text" matInput formControlName="cava"
+                [matAutocomplete]="c">
+              <mat-autocomplete #c="matAutocomplete">
+                @for (option of getCava; track option) {
+                <mat-option [value]="option">{{option}}</mat-option>
+                }
+
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="grid-container">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Comentário</mat-label>
+              <textarea matInput formControlName="comentario" placeholder="Comentário"></textarea>
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions class="full-width">
+          <button (click)="executarAcao()" mat-flat-button [disabled]="formExame.invalid" color="primary">{{ textoBotao
+            }}
+          </button>
+        </mat-card-actions>
+    </form>
+  </mat-card>
+</app-container>
+
+<!--
+  <mat-error *ngIf="formExame.get('nome')?.errors">Nome é obrigatório</mat-error>
+
+  <mat-datepicker-toggle matSuffix [for]="nascimento"></mat-datepicker-toggle>
+                <mat-datepicker #nascimento></mat-datepicker>[matDatepicker]="nascimento"-->

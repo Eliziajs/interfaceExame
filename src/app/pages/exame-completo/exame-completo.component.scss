@@ -1,0 +1,65 @@
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/solid';
+@import '@fortawesome/fontawesome-free/scss/regular';
+@import '@fortawesome/fontawesome-free/scss/brands';
+
+
+app-container {
+    margin-top: 5%;
+
+    h1 {
+        font-size: 30px;
+        font-weight: bolder;
+    }
+
+    h2 {
+        font-size: 25px;
+    }
+
+    h3 {
+        font-size: 25px;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bolder;
+        color: blue
+    }
+
+    span {
+
+        font-weight: 100;
+    }
+
+    mat-card {
+        margin: 0 auto;
+        max-width: 100%;
+        display: flex;
+        padding: 5%;
+    }
+
+    mat-divider {
+        margin-top: 3%;
+        margin-bottom: 3%;
+    }
+
+    ._table {
+        display: auto;
+        margin: 0 10% 0 30%;
+
+    }
+
+    .div_button {
+        margin: 0 auto;
+        display: flex;
+        justify-content: right;
+        margin: 0 95%;
+
+
+    }
+
+    .div_button1 {
+        display: flex;
+        justify-content: right;
+        margin: 0 95%;
+
+    }
+
+}

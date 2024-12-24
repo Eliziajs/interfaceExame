@@ -1,0 +1,23 @@
+//scss - cria seletores aninhados para cada componentes em que usa a sintaxe do 
+//component header (app-header)
+.app-header{ 
+  span{
+    margin: 0 10px;
+  }
+
+  mat-icon{
+    margin: 0 10px;
+  }
+  
+  button{
+    margin: 0 10px; //entre buttons
+  }
+  .spacer{
+      flex: 1 1 auto;
+  }
+  .mat-toolbar{
+      background-color: rgb(107, 167, 227);
+      padding: 0 128px; //espaçamento da pagina/ container
+      
+  }
+}

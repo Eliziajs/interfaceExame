@@ -1,0 +1,12 @@
+<app-banner
+src="/imagens/banner/b_stone.svg"
+alt="Banner da tela de perfil"
+>
+</app-banner>
+<app-form-base
+[titulo]="titulo + name"
+[textoBotao]="textoBotao"
+[perfilComponent]="perfilComponent"
+(sair)="logout()"
+(acaoclique)="atualizar()">
+</app-form-base>

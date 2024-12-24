@@ -1,0 +1,191 @@
+<app-banner src="/imagens/banner/b_stone.svg" alt="Banner da tela de perfil">
+</app-banner>
+
+<app-container>
+  <mat-card>
+    <table>
+      <tr>
+        <td>
+          <h1><i class="fa-solid fa-user"></i> {{paciente?.nome}}</h1>
+        </td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <td>Idade: {{ paciente?.idade }}</td>
+        <td>Sexo: {{paciente?.sexo }}</td>
+        <td>Peso: {{paciente?.peso}}</td>
+        <td>Altura {{paciente?.altura}}:</td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>
+          Médico: Nome do médico responsavel
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>CRM: {{5265982}}</td>
+      </tr>
+    </table>
+
+
+  </mat-card>
+
+  <mat-divider></mat-divider>
+  <div *ngFor="let paciente of paciente?.exames; index as i">
+    <mat-card>
+      <div class="div_button">
+        <button class="btn btn-primary" routerLink="/edit/{{ paciente.id }}">
+          <i class="fa-solid fa-pencil"></i>
+        </button>
+      </div>
+
+      <table>
+        <tr>
+          <td>
+            <h3>Número identificador: {{i+1}} </h3>
+          </td>
+          <td>
+            <p> Data: {{paciente.data}}</p>
+          </td>
+        </tr>
+      </table>
+
+      <p><i class="fa-solid fa-heart-circle-check"></i>
+        Situação do exame: Dentro dos padrões normais</p>
+      <h2><i class="fa-solid fa-ruler"></i> Medidas numéricas:</h2>
+      <table class="_table">
+        <tr>
+          <td>AO</td>
+          <td>{{ paciente.ao}}</td>
+
+        </tr>
+        <tr>
+          <td>AE</td>
+          <td>{{paciente.ae}}</td>
+        </tr>
+        <tr>
+          <td>VID</td>
+          <td>{{paciente.vid}}</td>
+        </tr>
+        <tr>
+          <td>VED</td>
+          <td>{{paciente.ved}}</td>
+        </tr>
+        <tr>
+          <td>VES</td>
+          <td>{{paciente.ves}}</td>
+        </tr>
+
+
+
+        <tr>
+          <td>SIV</td>
+          <td>{{paciente.siv}}</td>
+        </tr>
+        <tr>
+          <td>pp</td>
+          <td>{{paciente.pp}}</td>
+        </tr>
+        <tr>
+          <td>Fração de Ejeção</td>
+          <td>{{paciente.fracaoEjecao}}</td>
+        </tr>
+        <tr>
+          <td>e</td>
+          <td>{{paciente.e}}</td>
+        </tr>
+        <tr>
+          <td>e'</td>
+          <td>{{paciente.eLinha}}</td>
+        </tr>
+        <tr>
+          <td>outra medida</td>
+          <td>{{"outra medida"}}</td>
+        </tr>
+      </table>
+      <mat-divider></mat-divider>
+
+      <h2><i class="fa-solid fa-ruler"></i> Medidas descritivas:</h2>
+
+      <span> Medidas Cavitárias: </span>
+      <p>{{paciente.medidasCavitarias}}</p>
+      <span> Medidas do Ventrículo Esquerdo: </span>
+      <p>{{paciente.medidasVE}}</p>
+      <span> Função Sistólica: </span>
+      <p>{{paciente.funcaoSistolica}}</p>
+      <span> Contratilidade Segmentar: </span>
+      <p>{{paciente.contratilidadeSegmentar}}</p>
+      <span> função Diastolica: </span>
+      <p>{{paciente.funcaoDiastolica}}</p>
+      <span> Cavidades Direita: </span>
+      <p>{{paciente.cavidadesDireita}}</p>
+      <span> Aorta: </span>
+      <p>{{paciente.aorta}}</p>
+      <span> Válvula Aórtica: </span>
+      <p>{{paciente.valvulaAortica}}</p>
+      <span> Válvula Mitral: </span>
+      <p>{{paciente.valvulaMitral}}</p>
+      <span>Tricúspide </span>
+      <p>{{paciente.tricuspide}}</p>
+      <span> Válvula Pulmonar: </span>
+      <p>{{paciente. valvulaPulmonar}}</p>
+      <span> Pericárdio: </span>
+      <p>{{paciente.pericardio}}</p>
+      <span> Cava: </span>
+      <p>{{paciente.cava}}</p>
+      <span> Comentário </span>
+      <p>{{paciente.comentario}}</p>
+
+
+      <tr div class="div_button1">
+        <td>
+          <div >
+            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelecao"
+              (click)="exameSelectDelete(paciente)"> <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+
+        </td>
+        <td>
+          <div>
+            <button class="btn btn-secondary" routerLink="/exameCompleto/{{paciente.id}}" (click)="onDownload1(paciente.id)">
+              <i class="fa-solid fa-download"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+
+
+
+
+    </mat-card>
+    <mat-divider></mat-divider>
+
+  </div>
+
+  <div id="modalDelecao" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title"> Deseja realmente deletar este exame</h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+        </div>
+        <div class="modal-body" *ngIf ="exameSelecionado">
+         <p>identificador: {{ exameSelecionado.id}}  </p>
+        </div> 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" (click)="deletarExame()"
+             data-bs-dismiss="modal" >Confirma</button>
+          <button type="button" class="btn btn-secondary" 
+          data-bs-dismiss="modal">Cancelar</button>
+        </div >
+        
+      </div>
+    </div>
+  </div>
+</app-container>

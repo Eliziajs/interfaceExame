@@ -1,0 +1,25 @@
+Iniciando criando os componentes compartilhados e reutilizaveis que são o header e footer, por exemplo. A pasta se chama shared
+Material desing - biblioteca para desing
+-Pasta shared - componentes ( header, footer, banner ...)
+-Components (são inputs, list, cards, radio buttom, chip, date picker... )
+-Os componentes importados externo de bibliotecas são importados no app.modulo e adicionados no import do arquivo
+
+
+-a fim de reutilizar a imagem, usa-se no scss a interpolação para manter ele dinamico em seu comportamento
+para isso é necessario criar no banner.component.ts as suas variaveis e um decorate para os dados de entrada
+@Input() src:string="" para receber as propriedade de fora
+
+
+-ng-content cria diretiva para criar ponto de inserção de conteudo dinamico em diversos tipos de componentes
+o seletor estilizado no scss com estilo de class porem :host{}/ pode ser usado nas paginas construidas
+
+router-outlet - serve para renderizar a pagina construida na rota da pagina inicial, é nessario colocar o path e o
+ component no app-routing.module para q o angula reconheça
+
+
+
+
+ <app-banner
+    src = "imagens/logo.PNG"
+    alt = "Imagem Banner">
+</app-banner>
